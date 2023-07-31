@@ -52,7 +52,7 @@ function searchMovies(query, page = 1, itemsPerPage) {
       if (data.Response === 'True') {
         const movies = data.Search;
         const totalResults = parseInt(data.totalResults);
-
+console.log(movies);
         // Store all movies in the allMovies array
         allMovies.push(...movies);
 
@@ -93,13 +93,13 @@ function searchMovies(query, page = 1, itemsPerPage) {
   function createMovieCard(movie) {
     // Default image URL when movie poster is not available
     const defaultImage = "https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie.jpg";
-  
+    const noRating = "No Rating Found"
     const movieCard = `
       <div class="movie-card">
         <img class="movie-poster" src="${movie.Poster !== 'N/A' ? movie.Poster : defaultImage}" alt="${movie.Title}">
         <div class="movie-title">${movie.Title}</div>
         <div class="movie-year">${movie.Year}</div>
-        <div class="movie-rating">IMDb Rating: ${movie.imdbRating}</div>
+        <div class="movie-rating">IMDb Rating: ${movie.imdbRating!== undefined ? movie.imdbRating : noRating}</div>
       </div>
     `;
   
