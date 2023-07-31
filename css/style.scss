@@ -1,0 +1,147 @@
+// Import Google Fonts (you can choose your preferred font)
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+// Variables
+$primary-color: #007bff;
+$secondary-color: #888;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Global styles
+html, body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+// Search form styles
+#search-form {
+  @include flex-center;
+  margin-bottom: 20px;
+
+  input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid $secondary-color;
+    border-radius: 4px 0 0 4px;
+  }
+
+  button[type="submit"] {
+    @include flex-center;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+}
+
+// Movies container styles
+  .movies-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    position: relative; 
+  }
+  
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Add a spinning animation */
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+    
+
+.movie-card {
+  @include flex-center;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid $secondary-color;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  img.movie-poster {
+    width: 100%;
+    height: auto;
+    max-height: 230px;
+    min-height: 230px;
+    object-fit: cover;
+  }
+
+  .movie-title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .movie-year {
+    margin-top: 5px;
+    color: $secondary-color;
+  }
+
+  .movie-rating {
+    margin-top: 5px;
+    color: $primary-color;
+  }
+}
+
+// Load more button styles
+.load-more {
+  @include flex-center;
+  margin-top: 20px;
+
+  button#load-more-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+// Responsive styles
+@media screen and (max-width: 600px) {
+  .movies-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
